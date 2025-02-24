@@ -4,18 +4,8 @@
 #include <ros/ros.h>
 #include <morai_msgs/ObjectStatusList.h>
 #include <Eigen/Dense>
+#include <fstream>
 #include "gps.h"
-
-using namespace std;
-
-float offset[2] = {302459.942, 4122635.537};
-
-
-// void kalmanFilter()
-// {
-
-// }
-
 
 void getObjectData(const morai_msgs::ObjectStatusList::ConstPtr &msg)
 {
@@ -24,6 +14,14 @@ void getObjectData(const morai_msgs::ObjectStatusList::ConstPtr &msg)
 	double lat, lon;
 	for (index = 0; index < npc_size; index++)
 	{
+		string filename = "npc_info" + to_string(index + 1) + ".csv";
+		ofstream csvFile(filename);
+
+		double heading = msg->npc_list[index].heading;
+		double Vx = msg->npc_list[index].velocity.x;
+		double Vy = msg->npc_list[index].velocity.y;
+		double Vz = msg->npc_list[index].velocity.z;
+
 		cout << fixed <<  setprecision(8) << endl;
 		cout << "=======" << index + 1 << "번째 Object Info=======" << endl;
 		cout << "Heading : " << msg->npc_list[index].heading << endl;

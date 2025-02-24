@@ -42,6 +42,19 @@ target_link_libraries(main
     /usr/lib/x86_64-linux-gnu/libGeographic.so
 )
 add_dependencies(main ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+add_executable(load_npc src/load_npc.cpp)
+target_link_libraries(load_npc
+    ${catkin_LIBRARIES}
+)
+add_dependencies(load_npc ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+add_executable(save_npc src/save_npc.cpp src/gps.cpp)
+target_link_libraries(save_npc
+    ${catkin_LIBRARIES}
+    /usr/lib/x86_64-linux-gnu/libGeographic.so
+)
+add_dependencies(save_npc ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 # ===================================================
 
 # ==================== 라이브러리 제작 ====================

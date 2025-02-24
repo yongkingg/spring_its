@@ -5,17 +5,17 @@
 #include <tf2_ros/transform_broadcaster.h>
 #include <geometry_msgs/TransformStamped.h>
 #include "gps.h"
+
 using namespace std;
 
 double degToRad(double deg) { return deg / 180 * M_PI; }
 
 // 기준 WGS84 좌표
 WGS84 ref_WGS = {37.238838359501933, 126.772902206454901, 0.000000000000000};
-
+float offset[2] = {302459.942, 4122635.537};
 float a = 6378137.0;
 float f = 1.0 / 298.257223563;
 float e2 = 2 * f - pow(f, 2);
-
 float ref_phi = sqrt(1 - e2 * pow(sin(degToRad(ref_WGS.latitude)), 2));
 float ref_q = (a / ref_phi + ref_WGS.altitude) * cos(degToRad(ref_WGS.latitude));
 float ref_x = ref_q * cos(degToRad(ref_WGS.longitude));
