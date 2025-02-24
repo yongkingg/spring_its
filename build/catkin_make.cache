@@ -1,0 +1,2 @@
+package
+-DCATKIN_DEVEL_PREFIX=/home/autonav/Desktop/yongjun/kalman/devel -DCMAKE_INSTALL_PREFIX=/home/autonav/Desktop/yongjun/kalman/install -G Unix Makefiles
